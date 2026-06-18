@@ -14,16 +14,16 @@
   }
 }
 
-/* ГЛОБАЛЬНЫЙ ОТКЛИК ДЛЯ ВСЕХ КНОПОК */
+/* GLOBAL RESPONSE FOR ALL BUTTONS */
 button {
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none !important;
 }
 
 button:active {
-  transform: scale(0.92) !important; /* Сильное сжатие */
-  filter: brightness(2.5) contrast(1.2) !important; /* Мощная вспышка */
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.6) !important; /* Неоновое сияние при нажатии */
+  transform: scale(0.92) !important; /* Strong compression */
+  filter: brightness(2.5) contrast(1.2) !important; /* Powerful flash */
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.6) !important; /* Neon glow on click */
 }
 
 /* Cyber UI Elements */
@@ -62,7 +62,7 @@ button:active {
   text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
 }
 
-/* Кнопки в стиле Cyber Range */
+/* Buttons in Cyber Range style */
 .cyber-btn {
   @apply uppercase tracking-widest font-space font-bold text-[10px];
   border: 1px solid #1e293b;

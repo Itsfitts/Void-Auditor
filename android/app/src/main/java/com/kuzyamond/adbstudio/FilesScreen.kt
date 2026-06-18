@@ -110,7 +110,7 @@ fun FilesScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutineScop
 
         CyberCard(title = "FS_DIAGNOSTICS", color = Color.Gray) {
             Text(
-                "Если список файлов пуст, попробуйте путь /sdcard/ или /system/. Некоторые системные папки требуют Root, даже с Shizuku.",
+                "If the file list is empty, try path /sdcard/ or /system/. Some system folders require Root, even with Shizuku.",
                 color = Color(0xFF94A3B8),
                 fontSize = 10.sp,
                 lineHeight = 14.sp

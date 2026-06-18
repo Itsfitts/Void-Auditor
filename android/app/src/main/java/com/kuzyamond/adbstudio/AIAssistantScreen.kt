@@ -51,20 +51,20 @@ enum class RiskLevel {
 fun parseRiskLevel(text: String): RiskLevel {
     val upper = text.uppercase()
     return when {
-        upper.contains("CRITICAL") || upper.contains("КРИТИЧЕСКИЙ") -> RiskLevel.CRITICAL
-        upper.contains("HIGH") || upper.contains("ВЫСОКИЙ") -> RiskLevel.HIGH
-        upper.contains("MEDIUM") || upper.contains("СРЕДНИЙ") -> RiskLevel.MEDIUM
-        upper.contains("LOW") || upper.contains("НИЗКИЙ") -> RiskLevel.LOW
+        upper.contains("CRITICAL") || false -> RiskLevel.CRITICAL
+        upper.contains("HIGH") || false -> RiskLevel.HIGH
+        upper.contains("MEDIUM") || false -> RiskLevel.MEDIUM
+        upper.contains("LOW") || false -> RiskLevel.LOW
         else -> RiskLevel.UNKNOWN
     }
 }
 
 fun getRiskColor(level: RiskLevel): Color {
     return when (level) {
-        RiskLevel.CRITICAL -> Color(0xFFFF2D55)   // Красный
-        RiskLevel.HIGH     -> Color(0xFFFF9500)   // Оранжевый
-        RiskLevel.MEDIUM   -> Color(0xFFFFCC00)   // Жёлтый
-        RiskLevel.LOW      -> CyberAccent         // Кислотный лайм
+        RiskLevel.CRITICAL -> Color(0xFFFF2D55)   // Red
+        RiskLevel.HIGH     -> Color(0xFFFF9500)   // Orange
+        RiskLevel.MEDIUM   -> Color(0xFFFFCC00)   // Yellow
+        RiskLevel.LOW      -> CyberAccent         // Acid lime
         else               -> CyberText
     }
 }
@@ -76,16 +76,16 @@ val availableModels = listOf(
 )
 
 val systemInstruction = """
-Ты — сертифицированный Senior Android Security & Digital Forensics эксперт (Red/Blue Team, 10+ лет опыта).
-Специализация: Shizuku, ADB, pm/am/dumpsys, SELinux, Accessibility Abuse, Banking Trojan detection, IOC hunting, DevSecOps.
+You are a certified Senior Android Security & Digital Forensics expert (Red/Blue Team, 10+ years of experience).
+Specialization: Shizuku, ADB, pm/am/dumpsys, SELinux, Accessibility Abuse, Banking Trojan detection, IOC hunting, DevSecOps.
 
-Правила ответа (обязательно соблюдать):
-- Начинай строго с **RISK LEVEL**: Low / Medium / High / Critical
-- Чётко выделяй **найденные IOC** (подозрительные разрешения, сервисы, пакеты, поведение)
-- Для азербайджанских банковских приложений (az.unibank, az.dpc.sima и т.д.) — повышенное внимание
-- Всегда давай готовые команды для ADB Studio (SHELL / SCRIPT_EXECUTOR)
-- Предлагай автоматизированные скрипты и hardening-рекомендации
-- Отвечай на русском, структурировано, в профессиональном кибер-стиле
+Response rules (must strictly follow):
+- Start strictly with **RISK LEVEL**: Low / Medium / High / Critical
+- Clearly highlight **found IOCs** (suspicious permissions, services, packages, behavior)
+- For Azerbaijani banking apps (az.unibank, az.dpc.sima, etc.) — pay extra attention
+- Always provide ready-to-use commands for ADB Studio (SHELL / SCRIPT_EXECUTOR)
+- Suggest automated scripts and hardening recommendations
+- Reply in English, structured, in a professional cyber style
 """.trimIndent()
 
 @Composable
@@ -333,7 +333,7 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
             
             $scanReport
             
-            Проанализируй риски, найди IOC и дай конкретные рекомендации по защите.
+            Analyze risks, find IOCs and give specific protection recommendations.
         """.trimIndent()
 
         askGemini(prompt)
@@ -344,7 +344,7 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
     // ====================== EXPORT REPORT (FIXED) ======================
     fun exportCurrentReport() {
         if (messages.isEmpty()) {
-            Toast.makeText(context, "Нет данных для сохранения", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "No data to save", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -368,7 +368,7 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
         }
 
         try {
-            // Новое надёжное место — Downloads (работает стабильно)
+            // New reliable place - Downloads (works stably)
             val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             val appDir = File(downloadsDir, "ADB_Studio_Logs")
             if (!appDir.exists()) appDir.mkdirs()
@@ -381,7 +381,7 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
 
             Toast.makeText(
                 context,
-                "✅ Отчёт сохранён!\nDownloads/ADB_Studio_Logs/$filename",
+                "✅ Report saved!\nDownloads/ADB_Studio_Logs/$filename",
                 Toast.LENGTH_LONG
             ).show()
 
@@ -390,7 +390,7 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
         } catch (e: Exception) {
             Toast.makeText(
                 context,
-                "❌ Ошибка сохранения: ${e.localizedMessage}",
+                "❌ Save error: ${e.localizedMessage}",
                 Toast.LENGTH_LONG
             ).show()
             ShizukuExecutor.logListener?.invoke("ERROR", "Export failed: ${e.message}")
@@ -404,8 +404,8 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
             containerColor = CyberSurface,
             titleContentColor = CyberAccent,
             textContentColor = CyberText,
-            title = { Text("СОХРАНИТЬ ОТЧЕТ?", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace) },
-            text = { Text("Аудит успешно завершен. Хотите экспортировать полный отчет в файл?", fontSize = 12.sp) },
+            title = { Text("SAVE REPORT?", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace) },
+            text = { Text("Audit successfully completed. Do you want to export the full report to a file?", fontSize = 12.sp) },
             confirmButton = {
                 Button(
                     onClick = { 
@@ -414,11 +414,11 @@ fun AIAssistantScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCorouti
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = CyberAccent, contentColor = CyberBackground),
                     shape = RoundedCornerShape(2.dp)
-                ) { Text("ДА", fontWeight = FontWeight.Bold) }
+                ) { Text("YES", fontWeight = FontWeight.Bold) }
             },
             dismissButton = {
                 TextButton(onClick = { showSaveDialog = false }) {
-                    Text("НЕТ", color = Color.Gray, fontWeight = FontWeight.Bold)
+                    Text("NO", color = Color.Gray, fontWeight = FontWeight.Bold)
                 }
             },
             shape = RoundedCornerShape(2.dp),
@@ -649,48 +649,48 @@ fun generateSecuritySummary(auditReport: String, bankingReport: String = ""): Se
 
     val report = auditReport.uppercase()
 
-    add(report.contains("ADB_WIFI_ENABLED=1"), "ADB Wi-Fi включён", RiskLevel.HIGH,
-        "Настройки → Для разработчиков → Отладка по Wi-Fi → ВЫКЛ")
+    add(report.contains("ADB_WIFI_ENABLED=1"), "ADB Wi-Fi is enabled", RiskLevel.HIGH,
+        "Settings → Developer options → Wireless debugging → OFF")
     add(report.contains("ADB_WIFI_ENABLED=0").not() && report.contains("ADB_WIFI_ENABLED"),
-        "ADB Wi-Fi статус не определён", RiskLevel.LOW,
-        "Проверь: settings get global adb_wifi_enabled")
+        "ADB Wi-Fi status undefined", RiskLevel.LOW,
+        "Check: settings get global adb_wifi_enabled")
 
     add(report.contains("ACCESSIBILITY") && (report.contains("SERVICE") || report.contains("SERVICES")),
-        "Активны Accessibility-сервисы", RiskLevel.CRITICAL,
-        "Настройки → Спец. возможности → Отключи ненужные сервисы")
+        "Accessibility services are active", RiskLevel.CRITICAL,
+        "Settings → Accessibility → Disable unnecessary services")
 
     add(report.contains("ENFORCING").not() && report.contains("SELINUX"),
-        "SELinux не в Enforcing mode", RiskLevel.CRITICAL,
-        "Выполни: setenforce 1 (требуется root)")
+        "SELinux is not in Enforcing mode", RiskLevel.CRITICAL,
+        "Run: setenforce 1 (requires root)")
 
     add(report.contains("UNIBANK") || report.contains("SIMA") || report.contains("AZ."),
-        "Обнаружены банковские приложения Азербайджана", RiskLevel.HIGH,
-        "Запусти BANK SCAN для полной проверки разрешений")
+        "Azerbaijani banking apps detected", RiskLevel.HIGH,
+        "Run BANK SCAN for full permission check")
 
     add(report.contains("INSTALL_NON_MARKET_APPS=1"),
-        "Установка из неизвестных источников разрешена", RiskLevel.HIGH,
-        "Настройки → Безопасность → Неизвестные источники → ЗАПРЕТИТЬ")
+        "Installation from unknown sources is allowed", RiskLevel.HIGH,
+        "Settings → Security → Unknown sources → DENY")
 
     add(report.contains("WHITELIST") && report.contains("IO.ELEMENT"),
-        "Element X в белом списе DeviceIdle", RiskLevel.LOW,
-        "ОК — приложение не будет заморожено системой")
+        "Element X in DeviceIdle whitelist", RiskLevel.LOW,
+        "OK — app will not be frozen by system")
 
     add(report.contains("DEVICE_ADMIN") || report.contains("ADMIN="),
-        "Активны Device Administrators", RiskLevel.MEDIUM,
-        "Настройки → Безопасность → Администраторы устройства → Проверь список")
+        "Device Administrators are active", RiskLevel.MEDIUM,
+        "Settings → Security → Device administrators → Check the list")
 
     add(report.contains("TOP") && report.contains("CPU"),
-        "Фоновые процессы не проверены", RiskLevel.LOW,
-        "Выполни top -n 1 -b для анализа нагрузки")
+        "Background processes not checked", RiskLevel.LOW,
+        "Run top -n 1 -b to analyze load")
 
     if (bankingReport.isNotBlank()) {
         val bankUpper = bankingReport.uppercase()
         add(bankUpper.contains("DANGEROUS") || bankUpper.contains("HIGH RISK"),
-            "Банковские приложения имеют опасные разрешения", RiskLevel.CRITICAL,
-            "Отзови разрешения: pm revoke <pkg> android.permission.READ_SMS и др.")
+            "Banking apps have dangerous permissions", RiskLevel.CRITICAL,
+            "Revoke permissions: pm revoke <pkg> android.permission.READ_SMS etc.")
         add(bankUpper.contains("OVERLAY") || bankUpper.contains("SYSTEM_ALERT_WINDOW"),
-            "Банковские приложения имеют SYSTEM_ALERT_WINDOW", RiskLevel.HIGH,
-            "Отзови: pm revoke <pkg> android.permission.SYSTEM_ALERT_WINDOW")
+            "Banking apps have SYSTEM_ALERT_WINDOW", RiskLevel.HIGH,
+            "Revoke: pm revoke <pkg> android.permission.SYSTEM_ALERT_WINDOW")
     }
 
     val level = when {

@@ -17,7 +17,7 @@ fun DashboardScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutine
         modifier = Modifier.fillMaxSize().padding(bottom = 10.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        // --- БАЗОВЫЙ АУДИТ ---
+        // --- BASIC AUDIT ---
         CyberCard(title = "LOCAL_AUDIT", color = CyberAccent) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -62,7 +62,7 @@ fun DashboardScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutine
             }
         }
 
-        // --- УМНЫЙ МОНИТОРИНГ (на основе кейса с Bluetooth) ---
+        // --- SMART MONITORING (based on Bluetooth case) ---
         CyberCard(title = "SMART_FORENSICS", color = CyberAccent2) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -99,7 +99,7 @@ fun DashboardScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutine
 
         CyberCard(title = "STANDALONE_MODE", color = CyberInfo) {
             Text(
-                "Работает через Shizuku. Компьютер и сервер больше не нужны. Все команды исполняются локально.",
+                "Works via Shizuku. PC and server are no longer needed. All commands run locally.",
                 color = Color(0xFF94A3B8),
                 fontSize = 10.sp,
                 lineHeight = 16.sp

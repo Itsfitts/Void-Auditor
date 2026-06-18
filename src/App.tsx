@@ -22,9 +22,9 @@ export default function App() {
   
   const [packages, setPackages] = useState<{name: string, status: 'WORKING' | 'SLEEPING' | 'DISABLED'}[]>([]);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    'ИСПОЛЬЗУЕМЫЕ (RUNNING)': true,
-    'ЗАМОРОЖЕННЫЕ (FROZEN)': false,
-    'ОТКЛЮЧЕННЫЕ (DISABLED)': false
+    'RUNNING': true,
+    'FROZEN': false,
+    'DISABLED': false
   });
   const [searchPkg, setSearchPkg] = useState('');
   const [filePath, setFilePath] = useState('/sdcard/');
@@ -195,9 +195,9 @@ export default function App() {
   );
 
   const groupedPackages = {
-    'ИСПОЛЬЗУЕМЫЕ (RUNNING)': packages.filter(p => p.status === 'WORKING'),
-    'ЗАМОРОЖЕННЫЕ (FROZEN)': packages.filter(p => p.status === 'SLEEPING'),
-    'ОТКЛЮЧЕННЫЕ (DISABLED)': packages.filter(p => p.status === 'DISABLED')
+    'RUNNING': packages.filter(p => p.status === 'WORKING'),
+    'FROZEN': packages.filter(p => p.status === 'SLEEPING'),
+    'DISABLED': packages.filter(p => p.status === 'DISABLED')
   };
 
   const toggleSection = (name: string) => {
@@ -244,10 +244,10 @@ export default function App() {
                     <X size={24} onClick={() => setActiveTab('dashboard')} color={amber} />
                 </div>
                 <div style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.8, fontFamily: "'IBM Plex Mono', monospace" }}>
-                   [1] Установите приложение **Shizuku** на телефон.<br/>
-                   [2] Запустите его через Wireless Debugging.<br/>
-                   [3] Разрешите доступ ADB Studio в окне Shizuku.<br/>
-                   [4] Теперь вы можете управлять приложениями БЕЗ КОМПЬЮТЕРА.
+                   [1] Install **Shizuku** app on phone.<br/>
+                   [2] Launch it via Wireless Debugging.<br/>
+                   [3] Allow access to ADB Studio in Shizuku window.<br/>
+                   [4] Now you can manage apps WITHOUT PC.
                 </div>
             </div>
           )}
@@ -267,7 +267,7 @@ export default function App() {
                 <div className="cyber-border" style={{ padding: '15px' }}>
                     <h2 style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '15px', color: cyan, fontFamily: "'Space Mono', monospace" }}>{"> "}STANDALONE_MODE</h2>
                     <div style={{ padding: '10px', background: 'rgba(34, 211, 238, 0.05)', border: '1px solid #1e293b', fontSize: '10px', color: '#94a3b8' }}>
-                        Работает через Shizuku. Компьютер и сервер больше не нужны. Все команды исполняются локально.
+                        Works via Shizuku. PC and server are no longer needed. All commands run locally.
                     </div>
                 </div>
             </div>

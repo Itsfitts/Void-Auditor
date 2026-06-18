@@ -64,7 +64,7 @@ fun SecurityDashboardScreen(scope: kotlinx.coroutines.CoroutineScope = rememberC
     ) {
         // Header
         CyberCard(title = "SECURITY_DASHBOARD", color = CyberAccent) {
-            Text("Risk Aggregator v1.0 — комплексная оценка безопасности устройства",
+            Text("Risk Aggregator v1.0 — comprehensive device security assessment",
                 color = CyberText.copy(alpha = 0.7f), fontSize = 9.sp, fontFamily = FontFamily.Monospace)
         }
 

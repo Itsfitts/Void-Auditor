@@ -54,10 +54,10 @@ object ShizukuManager {
                 .removePrefix("adb shell ")
                 .removePrefix("adb -s R9HN50GZL4J shell ")
 
-            // Запускаем через SH по умолчанию
+            // Run via SH by default
             val process = method.invoke(null, arrayOf("sh", "-c", cleanCmd), null, null) as Process
             
-            // Читаем вывод побайтово (самый надежный способ)
+            // Read output byte by byte (most reliable way)
             val output = readStreamFully(process)
             val exitCode = process.waitFor()
 

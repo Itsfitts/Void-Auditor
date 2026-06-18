@@ -30,13 +30,13 @@ fun TerminalScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutineS
     var commandText by remember { mutableStateOf("") }
 
     val commonCommands = listOf(
-        "id" to "Текущий UID (проверка прав)",
-        "dumpsys deviceidle whitelist +io.element.android.x" to "🚀 Добавить Element X в БЕЛЫЙ СПИСОК (Анти-заморозка)",
-        "am force-stop io.element.android.x && am send-trim-memory io.element.android.x COMPLETE" to "🧹 ГЛУБОКАЯ очистка графики Element X",
-        "pm disable io.element.android.x/io.element.android.features.lockscreen.impl.unlock.activity.PinUnlockActivity" to "🔓 ОТКЛЮЧИТЬ экран пароля (Emergency)",
-        "pm enable io.element.android.x/io.element.android.features.lockscreen.impl.unlock.activity.PinUnlockActivity" to "🔐 ВЕРНУТЬ экран пароля",
-        "cmd package compile -m speed-profile io.element.android.x" to "⚡ Патч скорости/графики (Fix Black Screen)",
-        "wm size reset && wm density reset" to "🎨 Сбросить настройки экрана"
+        "id" to "Current UID (rights check)",
+        "dumpsys deviceidle whitelist +io.element.android.x" to "🚀 Add Element X to WHITELIST (Anti-freeze)",
+        "am force-stop io.element.android.x && am send-trim-memory io.element.android.x COMPLETE" to "🧹 DEEP clean of Element X graphics",
+        "pm disable io.element.android.x/io.element.android.features.lockscreen.impl.unlock.activity.PinUnlockActivity" to "🔓 DISABLE password screen (Emergency)",
+        "pm enable io.element.android.x/io.element.android.features.lockscreen.impl.unlock.activity.PinUnlockActivity" to "🔐 RESTORE password screen",
+        "cmd package compile -m speed-profile io.element.android.x" to "⚡ Speed/graphics patch (Fix Black Screen)",
+        "wm size reset && wm density reset" to "🎨 Reset screen settings"
     )
 
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
