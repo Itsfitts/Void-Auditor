@@ -51,10 +51,10 @@ enum class RiskLevel {
 fun parseRiskLevel(text: String): RiskLevel {
     val upper = text.uppercase()
     return when {
-        upper.contains("CRITICAL") || false -> RiskLevel.CRITICAL
-        upper.contains("HIGH") || false -> RiskLevel.HIGH
-        upper.contains("MEDIUM") || false -> RiskLevel.MEDIUM
-        upper.contains("LOW") || false -> RiskLevel.LOW
+        upper.contains("CRITICAL") -> RiskLevel.CRITICAL
+        upper.contains("HIGH") -> RiskLevel.HIGH
+        upper.contains("MEDIUM") -> RiskLevel.MEDIUM
+        upper.contains("LOW") -> RiskLevel.LOW
         else -> RiskLevel.UNKNOWN
     }
 }
