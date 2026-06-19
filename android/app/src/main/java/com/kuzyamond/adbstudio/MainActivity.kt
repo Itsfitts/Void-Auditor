@@ -40,15 +40,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.util.*
 
-// --- ТЕМА И ЦВЕТА ---
-val CyberBackground = Color(0xFF0A0F0A)     // Очень тёмный зелёный
+// --- THEME AND COLORS ---
+val CyberBackground = Color(0xFF0A0F0A)     // Very dark green
 val CyberSurface   = Color(0xFF121712)
-val CyberAccent    = Color(0xFF39FF14)     // Кислотный Lime Green
-val CyberAccent2   = Color(0xFF00FF9F)     // Мятный
+val CyberAccent    = Color(0xFF39FF14)     // Acid Lime Green
+val CyberAccent2   = Color(0xFF00FF9F)     // Mint
 val CyberText      = Color(0xFFB3FFBD)
 val CyberWarning   = Color(0xFFFF2D55)
 val CyberInfo      = Color(0xFF00E5FF)
-val CyberBorder    = Color(0xFF1E293B) // Оставляем темную границу для контраста
+val CyberBorder    = Color(0xFF1E293B) // Leave dark border for contrast
 
 @Composable
 fun ADBStudioTheme(content: @Composable () -> Unit) {
@@ -66,7 +66,7 @@ fun ADBStudioTheme(content: @Composable () -> Unit) {
     )
 }
 
-// --- ГЛОБАЛЬНЫЙ ЛОГ С УПРАВЛЕНИЕМ СОСТОЯНИЕМ ---
+// --- GLOBAL LOG WITH STATE MANAGEMENT ---
 data class LogEntry(val msg: String, val type: String, val tab: String)
 
 object GlobalLog {
@@ -90,7 +90,7 @@ object GlobalLog {
         _entries.value = (listOf(newEntry) + _entries.value).take(200)
         
         /* 
-        // Временно отключаем авто-сохранение для отладки
+        // Temporarily disable auto-save for debugging
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val dir = "/sdcard/ADB_Studio_Logs"
@@ -116,7 +116,7 @@ object GlobalLog {
     }
 }
 
-// --- ОСНОВНОЙ ЭКРАН ---
+// --- MAIN SCREEN ---
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -238,8 +238,8 @@ fun InfoDialog(onDismiss: () -> Unit) {
                 Text("VERSION: V12.5 [LIME_SHOCK]", color = CyberAccent2, fontSize = 12.sp, fontFamily = FontFamily.Monospace)
                 Spacer(Modifier.height(15.dp))
                 Text(
-                    "Автономный хакерский комплекс для глубокого аудита и управления Android-системами. " +
-                    "Использует Shizuku API и нейронные сети для анализа угроз.",
+                    "Autonomous hacking suite for deep audit and management of Android systems. " +
+                    "Uses Shizuku API and neural networks for threat analysis.",
                     fontSize = 12.sp,
                     lineHeight = 18.sp
                 )

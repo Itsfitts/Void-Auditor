@@ -16,69 +16,69 @@
 
 ---
 
-## Оглавление
+## Table of Contents
 
-- [О проекте](#о-проекте)
-- [Возможности](#возможности)
-- [Скриншоты](#скриншоты)
-- [Технологический стек](#технологический-стек)
-- [Установка](#установка)
-- [Сборка из исходников](#сборка-из-исходников)
-- [Архитектура](#архитектура)
-- [Использование](#использование)
-- [Разработка](#разработка)
-- [Лицензия](#лицензия)
-
----
-
-## О проекте
-
-**VOID Auditor** — профессиональный Android Forensics & Red Team инструмент для аудита безопасности устройств непосредственно с телефона. Работает через **Shizuku API**, не требует root-прав или подключения к ПК.
-
-Основная цель проекта — предоставить специалистам по безопасности, пентестерам и продвинутым пользователям полный набор инструментов для анализа и управления устройством: от проверки разрешений и Accessibility-сервисов до заморозки приложений и экспорта отчётов.
-
-Проект включает AI-ассистента на базе **Gemini API** для автоматического анализа результатов аудита и поиска IOC (Indicators of Compromise).
+- [About](#about)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Build from Source](#build-from-source)
+- [Architecture](#architecture)
+- [Usage](#usage)
+- [Development](#development)
+- [License](#license)
 
 ---
 
-## Возможности
+## About
 
-### 🔐 Аудит безопасности
-- Полная проверка устройства: SELinux, ADB, Accessibility Services
-- Анализ опасных разрешений (READ_CONTACTS, RECORD_AUDIO, CAMERA и др.)
-- Проверка Device Administrators и установки из неизвестных источников
-- Детектирование банковских троянов
-- Поиск подозрительных приложений
+**VOID Auditor** — professional Android Forensics  Red Team tool for auditing device security directly from the phone. Works via **Shizuku API**, requires no root privileges or PC connection.
 
-### 📱 Управление приложениями
-- Просмотр и фильтрация установленных пакетов
-- Пакетная заморозка/разморозка подозрительных приложений
-- Полная информация о версиях, разрешениях, путях установки
-- Запуск Activity по имени пакета
-- Бэкап и восстановление APK
+The main goal of the project is to provide security specialists, pentesters, and advanced users with a complete set of tools for device analysis and management: from checking permissions and Accessibility services to freezing apps and exporting reports.
 
-### 🤖 AI-ассистент (Gemini)
-- Автоматический анализ логов и поиск IOC
-- Генерация отчётов об аудите с оценкой риска
-- Рекомендации по блокировке и hardening
-- Поддержка русского языка
-- Выбор модели: Gemini 2.0 Flash Lite / Flash / 1.5 Flash
-
-### 📂 Файловая система и терминал
-- Просмотр файлов и каталогов на устройстве
-- Встроенный shell с Shizuku-привилегиями
-- Исполнение bash/python скриптов
-- Предустановленные скрипты аудита и очистки
-
-### 📊 Отчёты и экспорт
-- Автосохранение результатов аудита в `/sdcard/ADB_Studio_Logs/`
-- Экспорт чата с AI-ассистентом
-- Экспорт скриптов на SD-карту
-- Log Stream с цветовой кодировкой
+The project includes an AI assistant based on **Gemini API** for automatic analysis of audit results and IOC (Indicators of Compromise) search.
 
 ---
 
-## Скриншоты
+## Features
+
+### 🔐 Security Audit
+- Full device check: SELinux, ADB, Accessibility Services
+- Dangerous permissions analysis (READ_CONTACTS, RECORD_AUDIO, CAMERA, etc.)
+- Checking Device Administrators and installs from unknown sources
+- Banking trojan detection
+- Suspicious apps search
+
+### 📱 App Management
+- View and filter installed packages
+- Batch freeze/unfreeze of suspicious apps
+- Full info on versions, permissions, installation paths
+- Launch Activity by package name
+- APK backup and restore
+
+### 🤖 AI Assistant (Gemini)
+- Automatic log analysis and IOC search
+- Audit reports generation with risk assessment
+- Recommendations on blocking and hardening
+- Russian language support
+- Model selection: Gemini 2.0 Flash Lite / Flash / 1.5 Flash
+
+### 📂 File System  Terminal
+- View files and directories on device
+- Built-in shell with Shizuku privileges
+- Execution of bash/python scripts
+- Pre-installed audit and cleanup scripts
+
+### 📊 Reports  Export
+- Auto-saving audit results in `/sdcard/ADB_Studio_Logs/`
+- Export AI Assistant chat
+- Export scripts to SD card
+- Log Stream with color coding
+
+---
+
+## Screenshots
 
 | Dashboard | AI Assistant | App Manager |
 |---|---|---|
@@ -90,119 +90,119 @@
 
 ---
 
-## Технологический стек
+## Tech Stack
 
-| Компонент | Технология |
+| Component | Technology |
 |---|---|
-| **Язык** | Kotlin 1.9.20 |
+| **Language** | Kotlin 1.9.20 |
 | **UI** | Jetpack Compose + Material 3 |
-| **Привилегии** | Shizuku API 13.1.5 |
+| **Privileges** | Shizuku API 13.1.5 |
 | **AI** | Google Gemini API |
-| **Сборка** | Gradle 8.2.2, AGP 8.2.2 |
+| **Build** | Gradle 8.2.2, AGP 8.2.2 |
 | **minSdk** | 24 (Android 7.0) |
 | **targetSdk** | 33 |
 | **compileSdk** | 35 |
 
 ---
 
-## Установка
+## Installation
 
-### Требования
+### Requirements
 - Android 7.0+ (API 24)
-- [Shizuku](https://shizuku.rikka.app/) — приложение для получения привилегий
-- Gemini API ключ (для AI-функций) — получить в [Google AI Studio](https://aistudio.google.com/)
+- [Shizuku](https://shizuku.rikka.app/) — app for getting privileges
+- Gemini API key (for AI functions) — get at [Google AI Studio](https://aistudio.google.com/)
 
-### Быстрый старт
-1. Установите **Shizuku** из [официального источника](https://github.com/RikkaApps/Shizuku/releases)
-2. Активируйте Shizuku: **Настройки → Shizuku → Запустить**
-3. Скачайте последний APK из [Releases](https://github.com/YOUR_USERNAME/void-auditor/releases)
-4. Установите и запустите
-5. При первом входе в AI Assistant введите Gemini API ключ
+### Quick Start
+1. Install **Shizuku** from [official source](https://github.com/RikkaApps/Shizuku/releases)
+2. Activate Shizuku: **Settings → Shizuku → Start**
+3. Download latest APK from [Releases](https://github.com/YOUR_USERNAME/void-auditor/releases)
+4. Install and launch
+5. On first login to AI Assistant, enter Gemini API key
 
 ---
 
-## Сборка из исходников
+## Build from Source
 
 ```bash
-# Клонирование
+# Cloning
 git clone https://github.com/YOUR_USERNAME/void-auditor.git
 cd adbstudio
 
-# Установка Node зависимостей (веб-часть Capacitor)
+# Install Node dependencies (Capacitor web part)
 npm install
 
-# Сборка Android
+# Build Android
 cd android
 ./gradlew assembleDebug
 
-# APK будет в: android/app/build/outputs/apk/debug/app-debug.apk
+# APK will be in: android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Требования для сборки
+### Build requirements
 - Android Studio Hedgehog+ (2023.1+)
 - JDK 17
 - Android SDK 35
-- Node.js 18+ (для Capacitor)
+- Node.js 18+ (for Capacitor)
 
 ---
 
-## Архитектура
+## Architecture
 
 ```
 android/app/src/main/java/com/kuzyamond/adbstudio/
 ├── core/
-│   └── ShizukuExecutor.kt       # Адаптер для Shizuku с CommandResult
-├── AIAssistantScreen.kt         # AI-ассистент (Gemini + аудит)
-├── AppManagerScreen.kt          # Управление приложениями (batch actions)
-├── ActivityLauncherScreen.kt    # Запуск Activity по пакету
-├── BackupScreen.kt              # Бэкап/восстановление APK
-├── ConnectScreen.kt             # ADB WiFi подключение
-├── DashboardScreen.kt           # Главная панель с информацией
-├── FilesScreen.kt               # Файловый менеджер
-├── TerminalScreen.kt            # Shell терминал
-├── ScriptsScreen.kt             # Исполнитель скриптов
-├── MainActivity.kt              # Точка входа, тема, GlobalLog
-└── ShizukuManager.kt            # Базовый менеджер Shizuku (legacy)
+│   └── ShizukuExecutor.kt       # Adapter for Shizuku with CommandResult
+├── AIAssistantScreen.kt         # AI Assistant (Gemini + audit)
+├── AppManagerScreen.kt          # App Management (batch actions)
+├── ActivityLauncherScreen.kt    # Launch Activity by package
+├── BackupScreen.kt              # Backup/restore APK
+├── ConnectScreen.kt             # ADB WiFi connection
+├── DashboardScreen.kt           # Main dashboard with info
+├── FilesScreen.kt               # File manager
+├── TerminalScreen.kt            # Shell terminal
+├── ScriptsScreen.kt             # Script executor
+├── MainActivity.kt              # Entry point, theme, GlobalLog
+└── ShizukuManager.kt            # Base manager Shizuku (legacy)
 ```
 
-### Ключевые концепции
+### Key concepts
 
-- **ShizukuExecutor** — единый интерфейс для выполнения команд, оборачивает `ShizukuManager` с метриками времени выполнения, разделением stdout/stderr
-- **GlobalLog** — глобальный лог-менеджер с тегами для каждого экрана
-- **CommandResult** — data class с полями: `success`, `output`, `error`, `exitCode`, `executionTimeMs`
-- **ChatMessage** — модель сообщения AI-ассистента с поддержкой уровня риска (riskLevel)
-
----
-
-## Использование
-
-### Аудит устройства
-1. Перейдите во вкладку **AI**
-2. Нажмите **AUDIT** — будет выполнено 11 диагностических команд
-3. Результат автоматически сохранится и отправится Gemini для анализа
-4. AI вернёт ответ с **RISK LEVEL** и рекомендациями
-
-### Пакетная заморозка приложений
-1. Перейдите во вкладку **APPS**
-2. Поставьте галочки напротив подозрительных приложений
-3. Нажмите **BATCH** → выберите действие:
-   - `pm disable` — заморозить выбранные
-   - `pm enable` — разморозить
-   - `am force-stop` — остановить
-   - `pm clear` — очистить данные
-
-### Запуск скриптов
-1. Перейдите во вкладку **SCRIPTS**
-2. Выберите пресет (SECURITY_AUDIT, LOCKDOWN, NETWORK_SCAN и др.)
-3. При необходимости отредактируйте код скрипта
-4. Нажмите **EXECUTE**
+- **ShizukuExecutor** — single interface for executing commands, wraps `ShizukuManager` with execution time metrics, splitting stdout/stderr
+- **GlobalLog** — global log manager with tags for each screen
+- **CommandResult** — data class with fields: `success`, `output`, `error`, `exitCode`, `executionTimeMs`
+- **ChatMessage** — AI Assistant message model with risk level support (riskLevel)
 
 ---
 
-## Разработка
+## Usage
 
-### Структура коммитов
-Проект следует [Conventional Commits](https://www.conventionalcommits.org/):
+### Device Audit
+1. Go to tab **AI**
+2. Click **AUDIT** — 11 diagnostic commands will be executed
+3. Result will be automatically saved and sent to Gemini for analysis
+4. AI will return response with **RISK LEVEL** and recommendations
+
+### Batch freeze apps
+1. Go to tab **APPS**
+2. Check the boxes next to suspicious apps
+3. Click **BATCH** → select action:
+   - `pm disable` — freeze selected
+   - `pm enable` — unfreeze
+   - `am force-stop` — force stop
+   - `pm clear` — clear data
+
+### Run scripts
+1. Go to tab **SCRIPTS**
+2. Select preset (SECURITY_AUDIT, LOCKDOWN, NETWORK_SCAN etc.)
+3. If necessary, edit the script code
+4. Click **EXECUTE**
+
+---
+
+## Development
+
+### Commit Structure
+The project follows [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 feat: add batch freeze/unfreeze for apps
 fix: fix crash on empty audit report
@@ -210,34 +210,34 @@ refactor: migrate Shell to ShizukuExecutor
 docs: update README with new features
 ```
 
-### Полезные команды
+### Useful commands
 ```bash
-# Сборка отладочной версии
+# Build debug version
 cd android && ./gradlew assembleDebug
 
-# Быстрая установка на устройство
+# Fast install to device
 adb install -r android/app/build/outputs/apk/debug/app-debug.apk
 
-# Просмотр логов
+# View logs
 adb logcat | grep -i adbstudio
 ```
 
 ---
 
-## Лицензия
+## License
 
-Распространяется под лицензией **MIT**. Подробнее — в файле [LICENSE](LICENSE).
+Distributed under **MIT**. More details in file [LICENSE](LICENSE).
 
 ---
 
 <div align="center">
   <p>
-    Разработано с ❤️ для сообщества Android Security Researchers
+    Developed with ❤️ for community Android Security Researchers
   </p>
   <p>
-    <a href="https://github.com/M0NDsuChTiG/Void-Auditor/issues">Сообщить об ошибке</a>
+    <a href="https://github.com/M0NDsuChTiG/Void-Auditor/issues">Report an issue</a>
     ·
-    <a href="https://github.com/M0NDsuChTiG/Void-Auditor/discussions">Обсуждения</a>
+    <a href="https://github.com/M0NDsuChTiG/Void-Auditor/discussions">Discussions</a>
     ·
     <a href="https://t.me/+26NV_KkOTkE0ZmE6">Telegram</a>
   </p>

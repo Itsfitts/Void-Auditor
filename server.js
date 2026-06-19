@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
         console.log(`Action: ${action}`);
 
         if (action === 'list_packages') {
-          // Получаем отдельно список включенных и выключенных для корректного статуса
+          // Get the list of enabled and disabled separately for correct status
           const cmdEnabled = `${ADB_PATH} shell "pm list packages -e"`;
           const cmdDisabled = `${ADB_PATH} shell "pm list packages -d"`;
           

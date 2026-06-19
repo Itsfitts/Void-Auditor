@@ -98,7 +98,7 @@ fun ConnectScreen(scope: kotlinx.coroutines.CoroutineScope = rememberCoroutineSc
         
         CyberCard(title = "CONNECTION_HELP", color = Color.Gray) {
             Text(
-                "Убедитесь, что на удаленном устройстве включена 'Отладка по WiFi' (Wireless Debugging). Для USB используйте OTG-кабель.",
+                "Make sure 'Wireless Debugging' is enabled on the remote device. For USB use OTG cable.",
                 color = Color(0xFF94A3B8),
                 fontSize = 10.sp,
                 lineHeight = 14.sp
